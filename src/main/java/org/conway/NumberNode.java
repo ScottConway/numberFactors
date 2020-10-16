@@ -51,4 +51,13 @@ public class NumberNode {
         }
         return flattenedTree;
     }
+
+    public void addChildNode(NumberNode node) {
+        node.setParent(this);
+        this.childNodes.add(node);
+    }
+
+    private void setParent(NumberNode node) {
+        this.parentNode = node;
+    }
 }

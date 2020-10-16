@@ -94,4 +94,14 @@ public class NumberNodeTest {
         assertTrue(flattenedTree.contains(list362));
         assertFalse(flattenedTree.contains(list123));
     }
+
+    @Test
+    @DisplayName("NumberNode can be added as a child to another numberNode.")
+    public void addNumberNodeToNumberNode() {
+        NumberNode node2 = new NumberNode(2);
+        NumberNode node4 = new NumberNode(4);
+        node2.addChildNode(node4);
+        assertEquals(1, node2.getNumberOfChildren());
+        assertEquals(6, node4.getSum());
+    }
 }
