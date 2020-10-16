@@ -3,7 +3,10 @@ package org.conway;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class NumberNodeTest {
 
@@ -70,6 +73,25 @@ public class NumberNodeTest {
         assertEquals(9, child342.getSum());
         assertEquals(2, child362.getNumber());
         assertEquals(11, child362.getSum());
+    }
 
+    @Test
+    @DisplayName("Flatten the tree.")
+    public void flatten() {
+        List<Integer> list342 = Arrays.asList(3, 4, 2);
+        List<Integer> list362 = Arrays.asList(3, 6, 2);
+        List<Integer> list123 = Arrays.asList(1, 2, 3);
+
+        NumberNode parent = new NumberNode(3);
+        NumberNode child34 = parent.addChildNode(4);
+        NumberNode child342 = child34.addChildNode(2);
+        NumberNode child36 = parent.addChildNode(6);
+        NumberNode child362 = child36.addChildNode(2);
+
+        List<List<Integer>> flattenedTree = parent.flatten();
+
+        assertTrue(flattenedTree.contains(list342));
+        assertTrue(flattenedTree.contains(list362));
+        assertFalse(flattenedTree.contains(list123));
     }
 }

@@ -34,4 +34,21 @@ public class NumberNode {
     public int getNumberOfChildren() {
         return childNodes.size();
     }
+
+    public List<List<Integer>> flatten() {
+        List<List<Integer>> flattenedTree = new ArrayList<>();
+        if (childNodes.isEmpty()) {
+            List<Integer> leafNode = new ArrayList<>();
+            leafNode.add(this.number);
+            flattenedTree.add(leafNode);
+        } else {
+            for (NumberNode child : childNodes) {
+                for (List<Integer> list : child.flatten()) {
+                    list.add(0, this.number);
+                    flattenedTree.add(list);
+                }
+            }
+        }
+        return flattenedTree;
+    }
 }
